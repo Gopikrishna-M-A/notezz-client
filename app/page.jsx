@@ -1,6 +1,6 @@
-
+import Link from 'next/link';
 import TopRatedcard from "./Components/TopRatedcard"
-
+import { Button } from 'antd';
 
 export default function Home() {
   return (
@@ -12,8 +12,8 @@ export default function Home() {
             <div className="hero-title">Connect Share Thrive Together</div>
             <div className="hero-para">We're Your Study Buddy</div>
             <div className="hero-buttons">
-              <button className="get-started btn dark">Get started</button>
-              <button className="learn-more btn">Learn more</button>
+              <Link href='/profiles'> <Button type="primary" size="large">Get started</Button></Link>
+              <Link href='/howitworks'> <Button  size="large">Learn more</Button></Link>
             </div>
           </div>
 

@@ -1,13 +1,20 @@
 import React from 'react'
 import Link from 'next/link';
+import { Button } from 'antd';
 
-const Navbar = () => {
+import { options } from '../api/auth/[...nextauth]/options'
+import { getServerSession } from 'next-auth/next';
+
+const Navbar = async() => {
+  const session = await getServerSession(options)
+  console.log(session);
   return (
     <div className='navbar'>
 
-        <Link href='/' className="nav-logo-wrapper">
-            <div className="nav-logo-img"></div>
-            <div className="nav-logo-text">Notzzz</div>
+        <Link href='/settings' className="nav-logo-wrapper">
+            {session ? <img src={session.user.image} className="nav-logo-img"></img> : <div className="nav-logo-img"></div>}
+            {session? <div className="nav-logo-text">{session.user.name}</div> : <div className="nav-logo-text">Notzzz</div>}
+
         </Link>
         <div className="nav-links-wrapper">
             <Link className="nav-link" href='/'><div >Home</div></Link>
@@ -23,7 +30,8 @@ const Navbar = () => {
         </div>
 
         <div className="nav-button-wrapper">
-            <button className="btn nav-button">Sign in</button>
+            {session ? <Link href='/api/auth/signout'><Button className="nav-button">Sign out</Button></Link> : <Link href='/api/auth/signin'><Button className="nav-button">Sign in</Button></Link>}
+            
         </div>
 
     </div>

@@ -18,7 +18,7 @@ export default function RootLayout({ children }) {
           theme={{
             token: {
               // Seed Token
-              colorPrimary: "#000000",
+              colorPrimary: "#2F2E2E",
               // Alias Token
               colorBgContainer: "#ffffff",
             },

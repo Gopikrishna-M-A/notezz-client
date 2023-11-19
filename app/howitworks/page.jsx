@@ -1,11 +1,11 @@
 'use client'
-import React from 'react';
+import React, { useState } from 'react';
 import { Card, Typography, Steps } from 'antd';
 
 const { Title, Paragraph } = Typography;
 const { Step } = Steps;
 
-const HowItWorks = () => {
+const HowItWorks = async() => {
   return (
     <div className="how-it-works-page section">
       <Card className="how-it-works-card" bordered={false}>

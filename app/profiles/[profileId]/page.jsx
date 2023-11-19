@@ -1,12 +1,22 @@
 import React from "react";
 import { DownloadOutlined, RightOutlined, LeftOutlined } from "@ant-design/icons";
 import { Button, Rate, Select } from "antd";
+import { redirect } from 'next/navigation'
+import { getServerSession } from 'next-auth/next';
+import { options } from '../../api/auth/[...nextauth]/options'
 
 const handleChange = (value) => {
   console.log(`selected ${value}`);
 };
 
-const Profile = () => {
+const Profile = async() => {
+  
+  const session = await getServerSession(options)
+
+  if (!session) {
+    redirect('/api/auth/signin?callbackUrl=/profiles/profile')
+  }
+
   return (
     <div className="section profile-page">
       <div className="profile-left-section">
