@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Card } from 'antd';
 import { SmileOutlined } from '@ant-design/icons';
-
+import Link from 'next/link';
 const Pricing = () => {
   return (
     <div className="pricing-page">
@@ -13,9 +13,7 @@ const Pricing = () => {
             <li>Endless learning possibilities</li>
             <li>No hidden fees (seriously!)</li>
           </ul>
-          <Button type="primary" icon={<SmileOutlined />} size="large">
-            Get Started for Free
-          </Button>
+          <Link className='link' href='/profiles' ><Button type="primary" icon={<SmileOutlined />} size="large">Get Started for Free</Button></Link>    
         </Card>
       </div>
       <div className="pricing-card">

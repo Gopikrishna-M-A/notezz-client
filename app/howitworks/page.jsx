@@ -1,19 +1,19 @@
 'use client'
-import React, { useState } from 'react';
+import React from 'react';
 import { Card, Typography, Steps } from 'antd';
 
 const { Title, Paragraph } = Typography;
 const { Step } = Steps;
 
-const HowItWorks = async() => {
+const HowItWorks = () => {
   return (
     <div className="how-it-works-page section">
       <Card className="how-it-works-card" bordered={false}>
         <Title level={2}>How It Works</Title>
         <Paragraph>
-          Discovering and contributing to educational resources on Notes App is easy! Follow these simple steps to get started:
+          Discovering and contributing to educational resources on Notes App is easy! <br /> Follow these simple steps to get started
         </Paragraph>
-        <Steps direction="vertical" size="small" current={0}>
+        <Steps direction="vertical" size="small" current={1}>
           <Step title="Create an Account" description="Sign up for a Notes App account to access a world of educational content." />
           <Step title="Explore Notes" description="Browse through a variety of notes created by contributors covering various subjects and topics." />
           <Step title="Become a Contributor" description="Share your knowledge by becoming a contributor. Upload your notes to help fellow students." />

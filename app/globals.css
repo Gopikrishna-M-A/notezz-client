@@ -11,7 +11,10 @@
 body{
     background-color: #F9F9F9;
 }
-
+.link{
+    text-decoration: none;
+    color: black;
+}
 .row{
     display: flex;
     gap: 10px;
@@ -120,6 +123,12 @@ body{
 }
 .nav-link:hover{
     color: #747474;
+}
+
+.nav-button-wrapper{
+    display: flex;
+    align-items: center;
+    gap: 15px;    
 }
 
 /* HERO SECTION */
@@ -325,8 +334,9 @@ body{
     background: #FFFFFF;
     border: 1px solid #000000;
     border-radius: 12px;
-    width: 500px;
-    height: 670px;
+    width: fit-content;
+    height: fit-content;
+    padding: 10px;
 }
 
 .profile-right-section{
@@ -387,7 +397,11 @@ body{
     font-weight: 500;
     font-size: 16px;
 }
-
+.controls-wrapper{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
 
 
 /* UPLOAD PAGE */

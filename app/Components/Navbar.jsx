@@ -7,13 +7,12 @@ import { getServerSession } from 'next-auth/next';
 
 const Navbar = async() => {
   const session = await getServerSession(options)
-  console.log(session);
   return (
     <div className='navbar'>
 
-        <Link href='/settings' className="nav-logo-wrapper">
-            {session ? <img src={session.user.image} className="nav-logo-img"></img> : <div className="nav-logo-img"></div>}
-            {session? <div className="nav-logo-text">{session.user.name}</div> : <div className="nav-logo-text">Notzzz</div>}
+        <Link href='/' className="nav-logo-wrapper">
+            {/* <div className="nav-logo-img"></div> */}
+            <div className="nav-logo-text">Notzzz</div>
 
         </Link>
         <div className="nav-links-wrapper">
@@ -31,7 +30,7 @@ const Navbar = async() => {
 
         <div className="nav-button-wrapper">
             {session ? <Link href='/api/auth/signout'><Button className="nav-button">Sign out</Button></Link> : <Link href='/api/auth/signin'><Button className="nav-button">Sign in</Button></Link>}
-            
+            <Link href='/settings'>{session && <img src={session.user.image} className="nav-logo-img"></img>}</Link>
         </div>
 
     </div>
