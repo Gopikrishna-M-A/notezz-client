@@ -1,6 +1,7 @@
 'use client'
 import React, { useEffect, useState } from 'react';
 import TopRatedcard from "./TopRatedcard"
+import { Skeleton } from 'antd';
 
 const getTopCreators = (allUsers) => {
   const creators = allUsers.filter(user => user.creator);
@@ -14,15 +15,19 @@ const TopRated = ({baseUrl}) => {
 
 
     const [topCreators, setTopCreators] = useState([]);
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
       const fetchData = async () => {
         try {
+          setLoading(true);
           const response = await fetch(`${baseUrl}/user`);
           const data = await response.json();
           setTopCreators(getTopCreators(data))
         } catch (error) {
           console.error('Error fetching top creators:', error);
+        }finally{
+          setLoading(false);
         }
       };
   
@@ -41,9 +46,19 @@ const TopRated = ({baseUrl}) => {
 
       <div className="top-rated-right">
         <div className="top-rated-card-wrapper">
-        {topCreators.map((creator) => (
-            <TopRatedcard img={creator.avatar} name={creator.name}/>
-        ))}
+        {loading ? (
+            // Display Skeleton while loading
+            Array.from({ length: 4 }).map((_, index) => (
+              <div className='top-rated-card'>
+              <Skeleton.Image key={index} active  className="top-rated-card-img" />
+              </div>
+            ))
+          ) : (
+            // Display TopRatedcard components when data is loaded
+            topCreators.map((creator) => (
+              <TopRatedcard key={creator._id} profile={creator} />
+            ))
+          )}
         </div>
       </div>
     </div>

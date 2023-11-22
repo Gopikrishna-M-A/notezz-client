@@ -224,6 +224,10 @@ body{
     flex-direction: column;
     justify-content: space-between;
     padding: 10px;
+    transition: transform 0.3s ease-in-out;
+}
+.top-rated-card:hover{
+    transform: rotate(5deg);
 }
 .top-rated-card-img{
     width: 80%;

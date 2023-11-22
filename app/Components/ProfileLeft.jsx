@@ -5,9 +5,11 @@ import {
   RightOutlined,
   LeftOutlined,
 } from "@ant-design/icons";
-import { Button, Rate, Select, Cascader, message } from "antd";
+import { Button, Rate, Skeleton, Cascader, message } from "antd";
 import { useSearchParams } from "next/navigation";
 import MyDocument from './MyDocument'
+
+
 
 const ProfileLeft = ({ user, baseUrl }) => {
   const searchParams = useSearchParams();
@@ -18,6 +20,7 @@ const ProfileLeft = ({ user, baseUrl }) => {
   const [pdf,setPdf] = useState('')
   const [rating,setRating] = useState()
   const [value,setValue] = useState(false)
+  const [loading, setLoading] = useState(false);
 
 
   const handleRatingChange = (value) => {
@@ -25,14 +28,23 @@ const ProfileLeft = ({ user, baseUrl }) => {
   }
 
   useEffect(() => {
-    fetch(`${baseUrl}/user/${id}`)
-      .then((response) => response.json())
-      .then((data) => {
-        setProfile(data);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    try {
+      setLoading(true);
+      fetch(`${baseUrl}/user/${id}`)
+        .then((response) => {
+          return response.json();
+        })
+        .then((data) => {
+          setProfile(data);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    } catch (error) {
+      console.error(error);
+    }finally{
+      setLoading(false);
+    }
   }, []);
 
   useEffect(() => {
@@ -98,45 +110,65 @@ const ProfileLeft = ({ user, baseUrl }) => {
 
   return (
     <>
-    <div className="profile-left-section">
-      <div className="page-title">{profile.name}</div>
-      <div className="profile-details">
-        <Rate disabled value={profile.rating} style={{ fontSize: 13 }} />
-        <Button type="text" icon={<DownloadOutlined />} size="small">
-          &nbsp;{profile.downloads}
-        </Button>
+      <div className="profile-left-section">
+        {loading ? (
+          <Skeleton.Button
+          active
+          style={{ width: "200px" }}
+          />
+        ) : (
+          <>
+            <div className="page-title">{profile.name}</div>
+            <div className="profile-details">
+              <Rate disabled value={profile.rating} style={{ fontSize: 13 }} />
+              <Button type="text" icon={<DownloadOutlined />} size="small">
+                &nbsp;{profile.downloads}
+              </Button>
+            </div>
+          </>
+        )}
+
+        <Cascader
+          style={{ width: "fit-content" }}
+          options={options}
+          onChange={onChange}
+          placeholder="Please select note"
+          size="large"
+        />
+
+        {value && (
+          <div className="pdf-note">
+            <MyDocument pdf={`${baseUrl}/module/getPdf/${pdf}`} />
+          </div>
+        )}
       </div>
-
-      <Cascader
-        style={{width:"fit-content"}}
-        options={options}
-        onChange={onChange}
-        placeholder="Please select note"
-        size="large"
-      />
-
-      {value && 
-      <div className="pdf-note">
-      <MyDocument  pdf={`${baseUrl}/module/getPdf/${pdf}`}/>
-    </div>
-    }
-      
-
-    </div>
-    <div className="profile-right-section">
-    <div className="profile-img-wrapper">
-      <img className="profile-img" src={`/images/${profile.avatar}.png`} alt="" />
-    </div>
-    <Button onClick={handleDownload} type="primary" icon={<DownloadOutlined />} size="large">
-      Download note
-    </Button>
-    <div className="rating-box">
-      <div className="ratingbox-title">Rate and Review Profile</div>
-      <Rate defaultValue={0} onChange={handleRatingChange} />
-      <Button onClick={handleRatingSubmit}>Submit</Button>
-    </div>
-  </div>
-  </>
+      <div className="profile-right-section">
+        <div className="profile-img-wrapper">
+          {loading ? (
+            <Skeleton.Image active className="profile-img" />
+          ) : (
+            <img
+              className="profile-img"
+              src={`/images/${profile.avatar}.png`}
+              alt=""
+            />
+          )}
+        </div>
+        <Button
+          onClick={handleDownload}
+          type="primary"
+          icon={<DownloadOutlined />}
+          size="large"
+        >
+          Download note
+        </Button>
+        <div className="rating-box">
+          <div className="ratingbox-title">Rate and Review Profile</div>
+          <Rate defaultValue={0} onChange={handleRatingChange} />
+          <Button onClick={handleRatingSubmit}>Submit</Button>
+        </div>
+      </div>
+    </>
   );
 };
 

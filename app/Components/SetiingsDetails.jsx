@@ -1,7 +1,15 @@
 'use client'
 import { useState ,useEffect} from "react";
 import { DownloadOutlined, EditOutlined } from "@ant-design/icons";
-import { Button, Rate, Modal, Radio, Select,message } from "antd";
+import { Button, Rate, Modal, Radio, Select, message, Tag } from "antd";
+
+const branchesMapping = {
+  "Computer Science and Engineering": "CSE",
+  "Electronics and Communication Engineering": "ECE",
+  "Electrical and Instrumentation Engineering": "EEI",
+  "Mechanical Engineering": "ME",
+  "Civil Engineering": "CE",
+};
 
 
 const SetiingsDetails = ({ profile, baseUrl }) => {
@@ -171,8 +179,14 @@ const SetiingsDetails = ({ profile, baseUrl }) => {
           </Select>
         </div>
       </Modal>
-      <div className="setting-profile-semester">Semester {profile.semester}</div>
-      <div className="setting-profile-branch">{profile.branch}</div>
+      {/* <div className="setting-profile-semester">Semester {profile.semester}</div>
+      <div className="setting-profile-branch">{profile.branch}</div> */}
+      <Tag bordered={false} color="success">
+          {branchesMapping[profile.branch]}
+        </Tag>
+        <Tag bordered={false} color="processing">
+          SEM {profile.semester}
+        </Tag>
     </div>
   );
 };
