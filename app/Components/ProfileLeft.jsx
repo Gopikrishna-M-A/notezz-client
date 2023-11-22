@@ -5,7 +5,7 @@ import {
   RightOutlined,
   LeftOutlined,
 } from "@ant-design/icons";
-import { Button, Rate, Select, Cascader } from "antd";
+import { Button, Rate, Select, Cascader, message } from "antd";
 import { useSearchParams } from "next/navigation";
 import MyDocument from './MyDocument'
 
@@ -17,6 +17,7 @@ const ProfileLeft = ({ user, baseUrl }) => {
   const [options, setOptions] = useState();
   const [pdf,setPdf] = useState('')
   const [rating,setRating] = useState()
+  const [value,setValue] = useState(false)
 
 
   const handleRatingChange = (value) => {
@@ -56,6 +57,7 @@ const ProfileLeft = ({ user, baseUrl }) => {
       .then(response => response.json())
       .then(data => {
         console.log('Rating added successfully', data);
+        message.success('Thank you for your feedback!')
         // You can perform additional actions after successfully adding the rating
       })
       .catch(error => {
@@ -67,6 +69,7 @@ const ProfileLeft = ({ user, baseUrl }) => {
   const onChange = (value) => {
     if (value && value.length >= 4) {
       setPdf(value[3]);
+      setValue(true)
     }
   };
 
@@ -109,12 +112,15 @@ const ProfileLeft = ({ user, baseUrl }) => {
         options={options}
         onChange={onChange}
         placeholder="Please select note"
+        size="large"
       />
 
-
+      {value && 
       <div className="pdf-note">
-        <MyDocument  pdf={`${baseUrl}/module/getPdf/${pdf}`}/>
-      </div>
+      <MyDocument  pdf={`${baseUrl}/module/getPdf/${pdf}`}/>
+    </div>
+    }
+      
 
     </div>
     <div className="profile-right-section">
