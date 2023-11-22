@@ -1,5 +1,6 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
+import "./responsive.css";
 import Navbar from "./Components/Navbar";
 import { ConfigProvider } from "antd";
 
