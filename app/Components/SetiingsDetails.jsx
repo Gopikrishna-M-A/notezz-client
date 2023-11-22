@@ -43,10 +43,10 @@ const SetiingsDetails = ({ profile, baseUrl }) => {
   const avatarOptions = [
     { name: "boy1", image: "/images/boy1.png" },
     { name: "boy2", image: "/images/boy2.png" },
-    { name: "girl3", image: "/images/girl1.png" },
-    { name: "girl4", image: "/images/girl2.png" },
-    { name: "girl5", image: "/images/girl3.png" },
-    { name: "girl6", image: "/images/girl4.png" },
+    { name: "girl1", image: "/images/girl1.png" },
+    { name: "girl2", image: "/images/girl2.png" },
+    { name: "girl3", image: "/images/girl3.png" },
+    { name: "girl4", image: "/images/girl4.png" },
 
   ];
   return (
