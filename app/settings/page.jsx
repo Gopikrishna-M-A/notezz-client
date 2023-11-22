@@ -16,9 +16,9 @@ const Settings = async() => {
     <div className='section settings-page'>
       <div className="page-title">Settings</div>
       <div className="setting-profile-img-wrapper">
-        <img className="profile-img" src="/images/girl1.png" alt="" />
+        <img className="profile-img" src={`/images/${session.user.avatar}.png`} alt="" />
       </div>
-        <SetiingsDetails profile={session.user}/>
+        <SetiingsDetails baseUrl={baseUrl} profile={session.user}/>
         <SettingsControls baseUrl={baseUrl} profile={session.user}/>
     </div>
 

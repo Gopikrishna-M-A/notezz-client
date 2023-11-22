@@ -46,6 +46,7 @@ export const options = {
               session.user.downloads = data[0].downloads;
               session.user.rating = data[0].rating;
               session.user.creator = data[0].creator;
+              session.user.avatar = data[0].avatar;
             return session
         }
     }
