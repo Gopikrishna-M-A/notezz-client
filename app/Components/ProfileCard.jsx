@@ -9,7 +9,7 @@ const ProfileCard = ({ profile }) => {
     <div className='profile-card'>
         <img className="profile-img" src={`images/girl1.png`}></img>
         <div className="profile-card-details">
-            <div className="profile-name">{profile.name}</div>
+            <div className="profile-name">{profile.name.length > 11 ? `${profile.name.slice(0, 10)}...` : profile.name}</div>
             <div className="profile-downloads">
                 <Button type="text" icon={<DownloadOutlined />} size='small'> &nbsp;{profile.downloads}</Button>
             </div>

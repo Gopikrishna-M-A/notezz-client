@@ -264,7 +264,7 @@ body{
     display: flex;
     flex-direction: column;
     gap: 10px;
-    min-width: 180px;
+    width: 200px;
 }
 .profile-img{
     width: 80%;
@@ -279,8 +279,10 @@ body{
 }
 
 .profile-card-details{
+    width: 100%;
     display: flex;
     align-self: center;
+    justify-content: space-between;
     gap: 10px;
 }
 .profile-name{

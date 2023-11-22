@@ -7,9 +7,9 @@ const baseUrl = process.env.BASE_URL
 const Profiles = async() => {
   const session = await getServerSession(options)
 
-  // if (!session) {
-  //   redirect('/api/auth/signin?callbackUrl=/profiles')
-  // }
+  if (!session) {
+    redirect('/api/auth/signin?callbackUrl=/profiles')
+  }
 
   return (
     <div className='section'>
