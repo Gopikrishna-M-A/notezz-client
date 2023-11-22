@@ -11,9 +11,17 @@ pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/$
 export default function SimplePDFViewer({ pdf }) {
   const [numPages, setNumPages] = useState(0);
   const [pageNumber, setPageNumber] = useState(1);
+  const [containerWidth, setContainerWidth] = useState(window.innerWidth);
+
+  const updateContainerWidth = () => {
+    setContainerWidth(window.innerWidth);
+  };
 
   useEffect(() => {
-    // You can add any additional setup logic here
+    window.addEventListener('resize', updateContainerWidth);
+    return () => {
+      window.removeEventListener('resize', updateContainerWidth);
+    };
   }, []);
 
   function onDocumentLoadSuccess({ numPages: nextNumPages }) {
@@ -27,6 +35,8 @@ export default function SimplePDFViewer({ pdf }) {
   function goToPreviousPage() {
     setPageNumber((prevPageNumber) => prevPageNumber - 1);
   }
+  
+  const pageWidth = containerWidth > 500 ? (400) : (window.innerWidth - 80);
 
   return (
     <div>
@@ -43,8 +53,8 @@ export default function SimplePDFViewer({ pdf }) {
             onLoadSuccess={() => console.log("Page loaded")}
             renderTextLayer={false}
             renderAnnotationLayer={false}
-            // width={500} 
-            height={400}
+            width={pageWidth} 
+            // height={400}
           />
         </Document>
       </div>

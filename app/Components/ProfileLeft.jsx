@@ -129,7 +129,7 @@ const ProfileLeft = ({ user, baseUrl }) => {
         )}
 
         <Cascader
-          style={{ width: "fit-content" }}
+          style={{ width: "100%" }}
           options={options}
           onChange={onChange}
           placeholder="Please select note"
