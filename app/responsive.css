@@ -88,9 +88,12 @@
         margin-top: 40px;
     }
 
+    .profiles-wrapper{
+        gap: 5px;
+    }
 
     .profile-card{
-        width: 162px;
+        width: 140px;
         padding: 10px 5px;
         border-radius: 5px;
     }
@@ -99,6 +102,7 @@
     }
     .profile-card .profile-card-btn{
         border-radius: 5px;
+        font-size: 14px;
     }
     .profile-page{
         flex-direction: column;
@@ -110,7 +114,12 @@
     .profile-right-section .profile-img-wrapper{
         display: none;
     }
-
+    .profile-img{
+        width: 70%;
+    }
+    .profile-card-details button{
+        display: none;
+    }
 
     .how-it-works-card {
         width: 100%;
