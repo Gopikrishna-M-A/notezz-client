@@ -47,6 +47,8 @@ export const options = {
               session.user.rating = data[0].rating;
               session.user.creator = data[0].creator;
               session.user.avatar = data[0].avatar;
+              session.user.semester = data[0].semester;
+              session.user.branch = data[0].branch;
             return session
         }
     }
