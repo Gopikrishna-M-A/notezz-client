@@ -125,7 +125,7 @@ const ProfileLeft = ({ user, baseUrl }) => {
     </div>
     <div className="profile-right-section">
     <div className="profile-img-wrapper">
-      <img className="profile-img" src="/images/girl1.png" alt="" />
+      <img className="profile-img" src={`/images/${profile.avatar}.png`} alt="" />
     </div>
     <Button onClick={handleDownload} type="primary" icon={<DownloadOutlined />} size="large">
       Download note

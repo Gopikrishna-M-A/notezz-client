@@ -7,7 +7,7 @@ import Link from 'next/link'
 const ProfileCard = ({ profile }) => {
   return (
     <div className='profile-card'>
-        <img className="profile-img" src={`images/girl1.png`}></img>
+        <img className="profile-img" src={`images/${profile.avatar}.png`}></img>
         <div className="profile-card-details">
             <div className="profile-name">{profile.name.length > 11 ? `${profile.name.slice(0, 10)}...` : profile.name}</div>
             <div className="profile-downloads">

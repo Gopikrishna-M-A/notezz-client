@@ -42,7 +42,7 @@ const TopRated = ({baseUrl}) => {
       <div className="top-rated-right">
         <div className="top-rated-card-wrapper">
         {topCreators.map((creator) => (
-            <TopRatedcard img="boy1" name={creator.name}/>
+            <TopRatedcard img={creator.avatar} name={creator.name}/>
         ))}
         </div>
       </div>
